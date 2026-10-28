@@ -1,3 +1,5 @@
+import { parseSavedTimes, type SavedTime } from './saved';
+import { Bookmark, Trash2 } from 'lucide-react';
 import { rebaseMeeting } from './time';
 import ThemeToggle from './ThemeToggle';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -44,6 +46,22 @@ const icsDate = (t: number) =>
     .replace(/[-:]/g, '')
     .replace(/\.\d{3}/, '');
 export default function App() {
+  const [savedTimes, setSavedTimes] = useState<SavedTime[]>(() => {
+    try {
+      return parseSavedTimes(localStorage.getItem('overlap-saved-times'));
+    } catch {
+      return [];
+    }
+  });
+  const [slotTitle, setSlotTitle] = useState('Meeting'),
+    [sideTab, setSideTab] = useState<'suggested' | 'saved'>('suggested');
+  useEffect(() => {
+    try {
+      localStorage.setItem('overlap-saved-times', JSON.stringify(savedTimes));
+    } catch {
+      setNotice('Saved times are unavailable in this browser.');
+    }
+  }, [savedTimes]);
   const [cities, setCities] = useState<City[]>(loadCities),
     [date, setDate] = useState(() => localParts(Date.now(), 'Europe/Lisbon').date),
     [duration, setDuration] = useState(60),
@@ -543,7 +561,92 @@ export default function App() {
               </button>
             </div>
           </div>
-          {suggestions.length > 0 && (
+          <div className="side-tabs" aria-label="Meeting options">
+            <button aria-pressed={sideTab === 'suggested'} onClick={() => setSideTab('suggested')}>
+              Suggestions
+            </button>
+            <button aria-pressed={sideTab === 'saved'} onClick={() => setSideTab('saved')}>
+              Saved times ({savedTimes.length})
+            </button>
+          </div>
+          {sideTab === 'saved' && (
+            <div className="saved-times">
+              <label>
+                Meeting name
+                <input
+                  maxLength={60}
+                  value={slotTitle}
+                  onChange={(e) => setSlotTitle(e.target.value)}
+                />
+              </label>
+              <button
+                className="button"
+                disabled={!slotTitle.trim()}
+                onClick={() => {
+                  if (savedTimes.some((s) => s.start === selected && s.duration === duration)) {
+                    setNotice('This time is already saved.');
+                    return;
+                  }
+                  setSavedTimes((old) =>
+                    [
+                      {
+                        id: crypto.randomUUID(),
+                        title: slotTitle.trim(),
+                        start: selected,
+                        duration,
+                      },
+                      ...old,
+                    ].slice(0, 6),
+                  );
+                  setNotice('Meeting time saved.');
+                }}
+              >
+                <Bookmark size={14} />
+                Save current time
+              </button>
+              {!savedTimes.length && (
+                <p className="saved-empty">Save a few options to compare later.</p>
+              )}
+              {savedTimes.map((saved) => (
+                <div className="saved-time" key={saved.id}>
+                  <button
+                    className="saved-open"
+                    onClick={() => {
+                      const next = rebaseMeeting(saved.start, cities[0].zone, saved.duration);
+                      setDate(next.date);
+                      setIndex(next.index);
+                      setDuration(saved.duration);
+                      setNotice(
+                        next.start === saved.start
+                          ? 'Saved time selected.'
+                          : 'Saved time adjusted to the nearest 30-minute slot in the reference city.',
+                      );
+                    }}
+                  >
+                    <strong>{saved.title}</strong>
+                    <span>
+                      {new Intl.DateTimeFormat('en-GB', {
+                        day: 'numeric',
+                        month: 'short',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        timeZone: cities[0].zone,
+                      }).format(saved.start)}{' '}
+                      / {saved.duration} min
+                    </span>
+                  </button>
+                  <button
+                    className="icon-button"
+                    aria-label={'Remove saved time ' + saved.title}
+                    onClick={() => setSavedTimes((old) => old.filter((s) => s.id !== saved.id))}
+                  >
+                    <Trash2 size={14} />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+          {sideTab === 'suggested' && suggestions.length > 0 && (
             <div className="suggestion-times">
               <span>Suggested start times</span>
               {suggestions.slice(0, 6).map((t) => (

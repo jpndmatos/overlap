@@ -5,14 +5,14 @@ A time zone planner for arranging meetings. Add cities, compare working hours, a
 [Open Overlap](https://jpndmatos.github.io/overlap/)
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/dark-icons.jpg">
-  <img src="docs/desktop-icons.jpg" alt="Overlap desktop interface" width="1200">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/dark-dashboard.jpg">
+  <img src="docs/desktop-dashboard.jpg" alt="Overlap desktop interface" width="1200">
 </picture>
 
 <details>
   <summary>Mobile view</summary>
   <br>
-  <img src="docs/mobile-icons.jpg" alt="Overlap mobile interface" width="320">
+  <img src="docs/mobile-dashboard.jpg" alt="Overlap mobile interface" width="320">
 </details>
 
 ## Features
@@ -22,7 +22,9 @@ A time zone planner for arranging meetings. Add cities, compare working hours, a
 - Find shared availability with daylight-saving adjustments.
 - Switch the reference city and view each location's local time.
 - Copy meeting times or download an ICS file.
-- Saved city preferences and light and dark themes.
+- Six named meeting-time bookmarks, saved city preferences, and light and dark themes.
+
+The desktop dashboard keeps the timeline and meeting options together, with long city lists contained inside the timeline panel.
 
 ## Stack
 
