@@ -1,55 +1,39 @@
 # Overlap
 
-A timezone meeting planner with working-hour comparisons and calendar exports.
+Find a meeting time across time zones. Compare local times and working hours, then copy the meeting details or export a calendar file.
 
-[Try the live demo](https://jpndmatos.github.io/overlap/)
+[Open Overlap](https://jpndmatos.github.io/overlap/)
 
-![Overlap meeting planner](docs/desktop.jpg)
+![Overlap](docs/desktop.jpg)
 
-![Dark theme](docs/dark.jpg)
+## Features
 
-## What it does
+- Search cities and compare up to eight time zones.
+- Set working hours, a meeting date, start time, and duration.
+- Find shared availability with daylight-saving adjustments.
+- Switch the reference city and view each location's local time.
+- Copy meeting times or download an ICS file.
+- Saved city preferences and light and dark themes.
 
-- Select the start time directly and change the reference city without unnecessary time shifts.
+## Stack
 
-- Start with Lisbon, New York, and London, or search for other cities and IANA timezones.
-- Compare up to eight locations on a shared timeline.
-- Pick a date, a 30/60/90/120-minute duration, and a start time in half-hour steps.
-- Set working hours for each city, including overnight hours; optionally include weekends.
-- Find windows where the entire meeting fits in everyone's working hours.
-- Copy local meeting times or download an `.ics` calendar file.
-- Remember your city list and working hours on this device.
-- Display each city's local time above its timeline on small screens.
+React, TypeScript, Vite, and the Intl API.
 
 ## Run locally
 
-Node.js 22.14+ and npm (Node 24 recommended).
+Requires Node.js 22.14 or later.
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open **http://127.0.0.1:5176**.
+Open [localhost:5176](http://localhost:5176).
 
 ```sh
-npm test           # DST, quarter-hour offsets, weekends, overnight hours
-npm run build     # type-check and build to dist/
-npm run preview   # preview the production build
+npm test
+npm run build
+npm run preview
 ```
 
-The production app is static. `base: './'` supports repository-path hosting. The GitHub Pages workflow tests and builds before deploying.
-
-## Time, properly
-
-React, TypeScript, Vite, and native `Intl.DateTimeFormat`. IANA timezone identifiers drive local dates and UTC offsets, rather than hard-coded timezone differences. The first city is the reference for the selected calendar day. A daylight-saving transition can produce a 23- or 25-hour timeline. Availability checks each 15-minute segment of the complete meeting.
-
-Tests cover Lisbon's spring and autumn DST changes, Kathmandu's 45-minute offset, the weeks when US and European DST schedules differ, weekend exclusions, overnight working hours, and meetings that overrun closing time.
-
-## Scope
-
-This version compares working hours, not live calendar availability. It has no calendar account connection, invitations, holiday calendars, or backend. Downloading an `.ics` file does not book or send anything; add attendees in your calendar app. Local timezone accuracy depends on the browser's timezone database. Selected dates and meeting settings reset on reload; city preferences are kept in localStorage.
-
-No analytics or accounts. Poppins is bundled locally. Light and dark themes remember the selected appearance. Icons by Lucide.
-
-Built by [João Matos](https://github.com/jpndmatos). MIT licensed.
+Built by [João Matos](https://github.com/jpndmatos). MIT license.

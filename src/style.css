@@ -982,3 +982,14 @@ dialog .modal-note {
     min-height: 44px;
   }
 }
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.app-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
