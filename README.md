@@ -5,14 +5,14 @@ A time zone planner for arranging meetings. Add cities, compare working hours, a
 [Open Overlap](https://jpndmatos.github.io/overlap/)
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/dark.jpg">
-  <img src="docs/desktop.jpg" alt="Overlap desktop interface" width="1200">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/dark-icons.jpg">
+  <img src="docs/desktop-icons.jpg" alt="Overlap desktop interface" width="1200">
 </picture>
 
 <details>
   <summary>Mobile view</summary>
   <br>
-  <img src="docs/mobile.jpg" alt="Overlap mobile interface" width="320">
+  <img src="docs/mobile-icons.jpg" alt="Overlap mobile interface" width="320">
 </details>
 
 ## Features
