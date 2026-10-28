@@ -1,10 +1,24 @@
-# Overlap
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/logo-dark.svg">
+    <img src="docs/logo.svg" alt="Overlap" width="280" height="72">
+  </picture>
+</h1>
 
 Find a meeting time across time zones. Compare local times and working hours, then copy the meeting details or export a calendar file.
 
 [Open Overlap](https://jpndmatos.github.io/overlap/)
 
-![Overlap](docs/desktop.jpg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/dark.jpg">
+  <img src="docs/desktop.jpg" alt="Overlap desktop interface" width="1200">
+</picture>
+
+<details>
+  <summary>Mobile view</summary>
+  <br>
+  <img src="docs/mobile.jpg" alt="Overlap mobile interface" width="320">
+</details>
 
 ## Features
 
@@ -36,4 +50,4 @@ npm run build
 npm run preview
 ```
 
-Built by [João Matos](https://github.com/jpndmatos). MIT license.
+Built by [João Matos](https://github.com/jpndmatos). [MIT license](LICENSE).
