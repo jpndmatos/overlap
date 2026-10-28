@@ -1,10 +1,12 @@
 # Overlap
 
-Different places. Same good time. A small meeting planner for finding a moment that works across timezones.
+A timezone meeting planner with working-hour comparisons and calendar exports.
 
 [Try the live demo](https://jpndmatos.github.io/overlap/)
 
 ![Overlap meeting planner](docs/desktop.jpg)
+
+![Dark theme](docs/dark.jpg)
 
 ## What it does
 
@@ -46,6 +48,6 @@ Tests cover Lisbon's spring and autumn DST changes, Kathmandu's 45-minute offset
 
 This version compares working hours, not live calendar availability. It has no calendar account connection, invitations, holiday calendars, or backend. Downloading an `.ics` file does not book or send anything; add attendees in your calendar app. Local timezone accuracy depends on the browser's timezone database. Selected dates and meeting settings reset on reload; city preferences are kept in localStorage.
 
-No analytics or accounts. DM Sans and Manrope are loaded from Google Fonts. Icons by Lucide.
+No analytics or accounts. Poppins is bundled locally. Light and dark themes remember the selected appearance. Icons by Lucide.
 
 Built by [João Matos](https://github.com/jpndmatos). MIT licensed.

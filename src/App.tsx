@@ -1,3 +1,4 @@
+import ThemeToggle from './ThemeToggle';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   ArrowRight,
@@ -10,11 +11,8 @@ import {
   Globe2,
   MapPin,
   Minus,
-  Moon,
   Plus,
   Settings2,
-  Sun,
-  Sunrise,
   X,
 } from 'lucide-react';
 import {
@@ -127,18 +125,18 @@ export default function App() {
     setCities((old) => old.map((c) => (c.id === id ? { ...c, start, end } : c)));
   }
   const summary = () =>
-    `Let's meet — ${duration} minutes\n` +
+    `Meeting, ${duration} minutes\n` +
     cities
       .map(
         (c) =>
-          `${c.name}: ${new Intl.DateTimeFormat('en-GB', { timeZone: c.zone, weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }).format(selected)}, ${timeLabel(selected, c.zone, hour12)}–${timeLabel(end, c.zone, hour12)} (${utcOffset(selected, c.zone)})`,
+          `${c.name}: ${new Intl.DateTimeFormat('en-GB', { timeZone: c.zone, weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }).format(selected)}, ${timeLabel(selected, c.zone, hour12)} to ${timeLabel(end, c.zone, hour12)} (${utcOffset(selected, c.zone)})`,
       )
       .join('\n');
   async function copy() {
     const text = summary();
     try {
       await navigator.clipboard.writeText(text);
-      setNotice('Meeting times copied. Send them to your people.');
+      setNotice('Meeting times copied.');
     } catch {
       setFallback(text);
       setNotice('Select and copy the meeting times below.');
@@ -158,50 +156,15 @@ export default function App() {
       </a>
       <header className="topbar">
         <a className="brand" href="./">
-          <span className="brand-symbol">
-            <span />
-            <span />
-          </span>
-          overlap<span className="brand-period">.</span>
+          Overlap
         </a>
-        <div className="header-center">
-          <Globe2 size={13} />
-          <span>A LITTLE CLOSER, EVEN FROM HERE.</span>
-        </div>
-        <span className="timezone-badge">
-          <Clock3 size={13} />
-          Every timezone. One moment.
-        </span>
+        <span className="header-purpose">Time zone planner</span>
+        <ThemeToggle />
       </header>
       <main>
         <div className="intro">
-          <div>
-            <span className="eyebrow">
-              <span />
-              FIND A LITTLE TIME TOGETHER
-            </span>
-            <h1>
-              Different places.
-              <br />
-              <span>Same good time.</span>
-            </h1>
-            <p>
-              Find a moment that works for everyone.
-              <br className="mobile-break" /> No timezone maths required.
-            </p>
-          </div>
-          <div className="orbit-art" aria-hidden="true">
-            <div className="orbit orbit-one" />
-            <div className="orbit orbit-two" />
-            <div className="orbit orbit-three" />
-            <span className="orbit-dot a" />
-            <span className="orbit-dot b" />
-            <span className="orbit-dot c" />
-            <span className="orbit-center">
-              <Globe2 size={30} strokeWidth={1} />
-            </span>
-            <span className="orbit-caption">A SMALLER WORLD.</span>
-          </div>
+          <h1>Meeting planner</h1>
+          <p>Compare working hours across time zones.</p>
         </div>
         <section id="planner" className="planner" aria-label="Meeting planner">
           <div className="planner-controls">
@@ -271,9 +234,9 @@ export default function App() {
           </div>
           <div className="timeline-heading">
             <div>
-              <h2>Your people, their time</h2>
+              <h2>Time zones</h2>
               <p>
-                Timeline based on {cities[0].name} · {slots.length / 2}-hour day
+                Timeline based on {cities[0].name} / {slots.length / 2}-hour day
               </p>
             </div>
             <div className="legend">
@@ -283,7 +246,7 @@ export default function App() {
               </span>
               <span>
                 <i className="off" />
-                Off the clock
+                Outside hours
               </span>
             </div>
           </div>
@@ -333,17 +296,15 @@ export default function App() {
                 return (
                   <div className="city-row" key={city.id}>
                     <div className="city-column">
-                      <div className={'city-icon color-' + (i % 4)}>
-                        {p.hour >= 7 && p.hour < 19 ? <Sun size={17} /> : <Moon size={17} />}
-                      </div>
                       <div className="city-name">
-                        <h3>
-                          {city.name}
-                          {i === 0 && <span>BASE</span>}
-                        </h3>
+                        <h3>{city.name}</h3>
                         <p>
                           {utcOffset(selected, city.zone)}
-                          <span> · {dayDiff || p.weekday}</span>
+                          <span>
+                            {' '}
+                            / {dayDiff || p.weekday}
+                            {i === 0 ? ' / Reference' : ''}
+                          </span>
                         </p>
                       </div>
                       <button
@@ -397,7 +358,7 @@ export default function App() {
                     <div className="local-time">
                       <strong>{timeLabel(selected, city.zone, hour12)}</strong>
                       <span className={isWork ? 'is-working' : ''}>
-                        {isWork ? 'In working hours' : 'Off the clock'}
+                        {isWork ? 'In working hours' : 'Outside hours'}
                       </span>
                     </div>
                     {edit === city.id && (
@@ -462,16 +423,12 @@ export default function App() {
                   <Plus size={15} />
                   Add a city<span>{cities.length}/8</span>
                 </button>
-                <p>People are more than their timezones. But this helps.</p>
               </div>
             </div>
           </div>
           <div className="slider-area">
             <div>
-              <span>
-                <Sunrise size={15} />
-                Slide to find your moment
-              </span>
+              <span>Meeting start</span>
               <strong>
                 {timeLabel(selected, cities[0].zone, hour12)}
                 <ArrowRight size={12} />
@@ -489,7 +446,7 @@ export default function App() {
             />
             <div className="slider-ticks">
               <span>Start of day</span>
-              <span>Half-hour steps · {duration}-minute meeting</span>
+              <span>Half-hour steps / {duration}-minute meeting</span>
               <span>End of day</span>
             </div>
           </div>
@@ -520,20 +477,19 @@ export default function App() {
         <section className="suggestions">
           <div className="suggestion-heading">
             <div className="suggestion-label">
-              <span className={'status-dot ' + (valid ? 'good' : '')} />
               <div>
                 <h2>
                   {valid
-                    ? 'This is a good time.'
+                    ? 'Available for all'
                     : suggestions.length
-                      ? 'There’s a better moment.'
-                      : 'A tricky day to connect.'}
+                      ? 'Outside working hours'
+                      : 'No shared availability'}
                 </h2>
                 <p>
                   {valid
-                    ? 'Inside everyone’s working hours. A small win.'
+                    ? 'The full meeting fits within all working hours.'
                     : suggestions.length
-                      ? 'Try a shared window below, or adjust the timeline.'
+                      ? 'Choose a suggested time or adjust the start time.'
                       : 'No shared working hours for this duration. Try another day, a shorter meeting, or different hours.'}
                 </p>
               </div>
@@ -551,7 +507,7 @@ export default function App() {
           </div>
           {suggestions.length > 0 && (
             <div className="suggestion-times">
-              <span>SHARED WINDOWS</span>
+              <span>Suggested start times</span>
               {suggestions.slice(0, 6).map((t) => (
                 <button
                   key={t}
@@ -573,18 +529,6 @@ export default function App() {
             </label>
           )}
         </section>
-        <footer className="page-footer">
-          <span>
-            Less “what time is that for you?”
-            <br />
-            <strong>More time together.</strong>
-          </span>
-          <span>
-            BUILT FOR PEOPLE, NOT JUST CLOCKS.
-            <br />
-            Cities saved on this device. No accounts needed.
-          </span>
-        </footer>
       </main>
       <dialog
         ref={dialog}
@@ -601,8 +545,8 @@ export default function App() {
             <X size={19} />
           </button>
         </div>
-        <h2>Where’s everyone?</h2>
-        <p>Add a city. We’ll bring the local time.</p>
+        <h2>Add time zone</h2>
+        <p>Search for a city or an IANA time zone.</p>
         <label className="search">
           <MapPin size={16} />
           <input
@@ -643,7 +587,7 @@ export default function App() {
           )}
         </div>
         <p className="modal-note">
-          Working hours start at 09:00–18:00. You can change them per city.
+          Working hours start at 09:00 to 18:00. You can change them per city.
         </p>
       </dialog>
       {notice && (
