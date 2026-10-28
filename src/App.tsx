@@ -157,7 +157,7 @@ export default function App() {
         Skip to planner
       </a>
       <header className="topbar">
-        <a className="brand" href="/">
+        <a className="brand" href="./">
           <span className="brand-symbol">
             <span />
             <span />
