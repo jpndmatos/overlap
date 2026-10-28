@@ -993,3 +993,54 @@ dialog .modal-note {
   height: 28px;
   flex-shrink: 0;
 }
+
+/* Local-time figures lead; secondary settings stay discoverable. */
+.local-time strong {
+  font-variant-numeric: tabular-nums;
+}
+.city-settings:hover {
+  background: var(--color-selected);
+  color: var(--color-accent);
+}
+.suggestion-times button.active {
+  box-shadow: inset 3px 0 var(--color-accent);
+  font-weight: 500;
+}
+.start-time-field select {
+  font-variant-numeric: tabular-nums;
+}
+.city-editor {
+  row-gap: 16px;
+}
+.city-results > button {
+  white-space: normal;
+}
+.city-results > button > span {
+  min-width: 0;
+}
+.city-results small {
+  overflow-wrap: anywhere;
+}
+@media (min-width: 1221px) {
+  .suggestions {
+    position: sticky;
+    top: 24px;
+  }
+}
+@media (max-width: 480px) {
+  .city-settings {
+    min-width: 44px;
+  }
+  .suggestion-times {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .city-editor label {
+    flex: 1;
+  }
+  .city-editor select {
+    width: 100%;
+  }
+  .start-time-field select {
+    max-width: 180px;
+  }
+}
