@@ -49,5 +49,3 @@ npm test
 npm run build
 npm run preview
 ```
-
-Built by [João Matos](https://github.com/jpndmatos). [MIT license](LICENSE).
