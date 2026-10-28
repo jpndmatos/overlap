@@ -1,11 +1,6 @@
-<h1>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/logo-dark.svg">
-    <img src="docs/logo.svg" alt="Overlap" width="280" height="72">
-  </picture>
-</h1>
+# Overlap
 
-Find a meeting time across time zones. Compare local times and working hours, then copy the meeting details or export a calendar file.
+A time zone planner for arranging meetings. Add cities, compare working hours, and choose a meeting time. You can copy the details or save a calendar file.
 
 [Open Overlap](https://jpndmatos.github.io/overlap/)
 
