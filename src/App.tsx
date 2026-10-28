@@ -1,3 +1,4 @@
+import { rebaseMeeting } from './time';
 import ThemeToggle from './ThemeToggle';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -12,7 +13,6 @@ import {
   MapPin,
   Minus,
   Plus,
-  Settings2,
   X,
 } from 'lucide-react';
 import {
@@ -312,7 +312,7 @@ export default function App() {
                         aria-label={'Working hours for ' + city.name}
                         onClick={() => setEdit(edit === city.id ? null : city.id)}
                       >
-                        <Settings2 size={13} />
+                        <span>Hours</span>
                       </button>
                     </div>
                     <div
@@ -394,6 +394,24 @@ export default function App() {
                             ))}
                           </select>
                         </label>
+                        {i !== 0 && (
+                          <button
+                            className="reference-button"
+                            onClick={() => {
+                              const next = rebaseMeeting(selected, city.zone, duration);
+                              setCities((old) => [city, ...old.filter((c) => c.id !== city.id)]);
+                              setDate(next.date);
+                              setIndex(next.index);
+                              setEdit(null);
+                              if (next.start !== selected)
+                                setNotice(
+                                  'Start time adjusted to the nearest valid 30-minute interval in the reference zone.',
+                                );
+                            }}
+                          >
+                            Use as reference
+                          </button>
+                        )}
                         {cities.length > 1 && (
                           <button
                             className="remove-city"
@@ -428,10 +446,22 @@ export default function App() {
           </div>
           <div className="slider-area">
             <div>
-              <span>Meeting start</span>
+              <label className="start-time-field">
+                <span>Start in {cities[0].name}</span>
+                <select
+                  aria-label="Meeting start time"
+                  value={safeIndex}
+                  onChange={(event) => setIndex(Number(event.target.value))}
+                >
+                  {slots.slice(0, lastIndex + 1).map((time, slotIndex) => (
+                    <option key={time} value={slotIndex}>
+                      {timeLabel(time, cities[0].zone, hour12)} ({utcOffset(time, cities[0].zone)})
+                    </option>
+                  ))}
+                </select>
+              </label>
               <strong>
-                {timeLabel(selected, cities[0].zone, hour12)}
-                <ArrowRight size={12} />
+                <span className="end-time-label">Ends</span>
                 {timeLabel(end, cities[0].zone, hour12)}
                 <small>{cities[0].name}</small>
               </strong>
@@ -446,7 +476,7 @@ export default function App() {
             />
             <div className="slider-ticks">
               <span>Start of day</span>
-              <span>Half-hour steps / {duration}-minute meeting</span>
+              <span>30-minute intervals</span>
               <span>End of day</span>
             </div>
           </div>

@@ -788,3 +788,197 @@ dialog .modal-note {
     width: 100%;
   }
 }
+
+/* The schedule is one flat surface; the selected meeting remains explicit. */
+.topbar {
+  border-bottom: 0;
+}
+.planner {
+  border: 0;
+  border-radius: 8px;
+  overflow: clip;
+}
+.planner-controls {
+  border: 0;
+  border-radius: 8px 8px 0 0;
+  padding: 16px 20px;
+}
+.date-picker input {
+  background: var(--color-paper-2) !important;
+}
+.today-button,
+.format-toggle {
+  border: 0;
+  background: var(--color-paper-2);
+  border-radius: 4px;
+  min-height: 40px;
+}
+.timeline-heading {
+  padding: 24px 24px 12px;
+}
+.timeline-table {
+  padding-inline: 24px;
+}
+.ruler-row,
+.city-row {
+  grid-template-columns: 180px minmax(0, 1fr) 100px;
+}
+.city-settings {
+  width: auto;
+  padding: 8px;
+  color: var(--color-accent);
+  font-size: 12px;
+  min-height: 36px;
+}
+.hour-blocks {
+  border: 0;
+  border-radius: 4px;
+  overflow: clip;
+}
+.hour-blocks span {
+  border-right: 0;
+}
+.hour-blocks span:nth-child(2n) {
+  border-right: 1px solid var(--color-paper-2);
+}
+.selection {
+  border-radius: 4px;
+  opacity: 0.9;
+}
+.city-editor {
+  border: 0;
+  border-radius: 4px;
+  padding: 16px;
+}
+.reference-button {
+  border: 0;
+  background: var(--color-selected);
+  color: var(--color-accent);
+  padding: 8px 12px;
+  min-height: 36px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+.add-city-row button {
+  border: 0;
+  background: var(--color-paper-3);
+  min-height: 40px;
+}
+.slider-area {
+  padding: 24px;
+  border: 0;
+}
+.start-time-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.start-time-field > span {
+  font-size: 13px;
+  font-weight: 500;
+}
+.start-time-field select {
+  min-height: 40px !important;
+  font-size: 13px !important;
+  background: var(--color-paper-2) !important;
+}
+.end-time-label {
+  font-size: 12px;
+  color: var(--color-ink-2);
+  font-weight: 400;
+}
+.planner-footer {
+  border: 0;
+  padding: 16px 24px;
+  background: var(--color-paper-3);
+}
+.suggestions {
+  border: 0;
+  background: var(--color-paper-2);
+  border-radius: 8px;
+}
+.suggestion-times button {
+  border: 0;
+  background: var(--color-paper-3);
+  min-height: 44px;
+}
+.suggestion-times button.active {
+  border: 0;
+  background: var(--color-selected);
+  color: var(--color-accent);
+}
+.city-results > button {
+  border: 0;
+  border-radius: 4px;
+  padding: 16px 12px;
+}
+.city-results > button + button {
+  margin-top: 4px;
+}
+@media (max-width: 1220px) {
+  .suggestions {
+    gap: 24px;
+  }
+}
+@media (max-width: 760px) {
+  .ruler-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .city-row {
+    grid-template-columns: minmax(0, 1fr) 110px;
+  }
+  .timeline-table {
+    padding-inline: 20px;
+  }
+  .timeline-heading {
+    padding: 24px 20px 12px;
+  }
+  .start-time-field {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .slider-area > div:first-child > strong {
+    margin-top: 4px;
+  }
+  .slider-area {
+    padding: 24px 20px;
+  }
+  .planner-footer {
+    padding: 16px 20px;
+  }
+  .city-settings {
+    min-height: 44px;
+  }
+  .city-editor {
+    gap: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .start-time-field > span {
+    font-size: 12px;
+  }
+  .start-time-field select {
+    max-width: 170px;
+  }
+  .timeline-heading {
+    padding-inline: 16px;
+  }
+  .timeline-table {
+    padding-inline: 16px;
+  }
+  .slider-area {
+    padding-inline: 16px;
+  }
+  .planner-footer {
+    padding-inline: 16px;
+  }
+  .control-right {
+    padding-top: 4px;
+  }
+  .today-button,
+  .format-toggle,
+  .add-city-row button {
+    min-height: 44px;
+  }
+}

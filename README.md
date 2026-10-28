@@ -10,6 +10,8 @@ A timezone meeting planner with working-hour comparisons and calendar exports.
 
 ## What it does
 
+- Select the start time directly and change the reference city without unnecessary time shifts.
+
 - Start with Lisbon, New York, and London, or search for other cities and IANA timezones.
 - Compare up to eight locations on a shared timeline.
 - Pick a date, a 30/60/90/120-minute duration, and a start time in half-hour steps.

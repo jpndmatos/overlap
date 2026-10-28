@@ -54,6 +54,14 @@ export function daySlots(date: string, zone: string) {
     end = midnight(nextDate(date), zone);
   return Array.from({ length: Math.round((end - first) / 1800000) }, (_, i) => first + i * 1800000);
 }
+
+export function rebaseMeeting(start: number, zone: string, duration: number) {
+  const date = localParts(start, zone).date;
+  const slots = daySlots(date, zone);
+  const lastIndex = Math.max(0, slots.length - duration / 30);
+  const index = Math.max(0, Math.min(lastIndex, Math.round((start - slots[0]) / 1_800_000)));
+  return { date, index, start: slots[index] };
+}
 export function working(time: number, city: City, weekends = false) {
   const p = localParts(time, city.zone);
   if (!weekends && ['Sat', 'Sun'].includes(p.weekday)) return false;
