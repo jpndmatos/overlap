@@ -4,15 +4,12 @@ A time zone planner for arranging meetings. Add cities, compare working hours, a
 
 [Open Overlap](https://jpndmatos.github.io/overlap/)
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/dark-dashboard.jpg">
-  <img src="docs/desktop-dashboard.jpg" alt="Overlap desktop interface" width="1200">
-</picture>
+![overlap workspace](docs/workspace.png)
 
 <details>
   <summary>Mobile view</summary>
   <br>
-  <img src="docs/mobile-dashboard.jpg" alt="Overlap mobile interface" width="320">
+  <img src="docs/mobile.png" alt="Overlap mobile interface" width="320">
 </details>
 
 ## Features
@@ -22,7 +19,7 @@ A time zone planner for arranging meetings. Add cities, compare working hours, a
 - Find shared availability with daylight-saving adjustments.
 - Switch the reference city and view each location's local time.
 - Copy meeting times or download an ICS file.
-- Six named meeting-time bookmarks, saved city preferences, and light and dark themes.
+- Six named meeting-time bookmarks, saved city preferences, and a dedicated visual design.
 
 The desktop dashboard keeps the timeline and meeting options together, with long city lists contained inside the timeline panel.
 
@@ -46,3 +43,13 @@ npm test
 npm run build
 npm run preview
 ```
+
+## Interface
+
+A blue daylight planner with full-width city timelines, monospaced local clocks and meeting actions below the schedule. Local preferences, saved meetings and calendar exports work independently of any server.
+
+Each repository builds independently. System fonts keep the initial view free of font downloads.
+
+## Verification
+
+The production build and unit tests pass. Portfolio integration checks cover the main workflows at 390px and 1440px, WCAG A/AA checks including WCAG 2.2 target sizes, and failure handling. The mobile Lighthouse lab result is saved in `docs/performance.json`; it is a local observation, not a field-performance guarantee.

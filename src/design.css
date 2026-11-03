@@ -1,0 +1,406 @@
+/* A wide daylight map with a separate meeting dock. */
+:root {
+  --color-paper: #f4f7ff;
+  --color-paper-2: #fff;
+  --color-paper-3: #eff3ff;
+  --color-ink: #17244d;
+  --color-ink-2: #536187;
+  --color-muted: #59658a;
+  --color-rule: #d4ddf4;
+  --color-input-edge: #8999bf;
+  --color-accent: #224fd0;
+  --color-accent-hover: #163bad;
+  --color-focus: #224fd0;
+  --color-selected: #e3eaff;
+  --color-track-work: #c4d8ff;
+  --color-track-off: #edf1f9;
+  --color-track-night: #d9deee;
+}
+.topbar {
+  max-width: 1320px;
+  padding: 20px 36px;
+  min-height: 76px;
+  border: 0;
+}
+.brand {
+  font-size: 24px;
+  letter-spacing: -1px;
+}
+.brand img {
+  display: none;
+}
+.header-purpose {
+  margin-left: auto;
+  color: var(--color-ink-2);
+  font-size: 12px;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  max-width: 1320px;
+  padding: 24px 36px 56px;
+  gap: 28px;
+}
+.intro {
+  display: block;
+  margin: 0 0 8px;
+}
+.intro h1 {
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -1.7px;
+}
+.intro p {
+  margin-top: 12px;
+  font-size: 14px;
+}
+.planner {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--color-rule);
+  box-shadow: 0 12px 40px #2d4c8e08;
+}
+.planner-controls {
+  background: var(--color-paper-2);
+  padding: 16px 24px;
+  border-radius: 0;
+}
+.date-picker input {
+  border: 0;
+  font-weight: 600;
+  background: transparent;
+}
+.today-button,
+.format-toggle {
+  border-radius: 100px;
+  padding-inline: 16px;
+  background: var(--color-paper-3);
+  border-color: var(--color-rule);
+}
+.timeline-heading {
+  padding: 24px;
+}
+.timeline-heading h2 {
+  font-size: 15px;
+  font-weight: 500;
+}
+.timeline-heading p {
+  font-size: 11px;
+}
+.legend {
+  font-size: 11px;
+}
+.timeline-table {
+  padding: 0 24px;
+}
+.city-row {
+  padding: 24px 0;
+}
+.local-time strong {
+  font:
+    30px/1.1 'Consolas',
+    ui-monospace,
+    monospace;
+  letter-spacing: -1.3px;
+}
+.city-name h3 {
+  font-size: 14px;
+}
+.timeline-track {
+  height: 48px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.city-column {
+  gap: 12px;
+}
+.ruler {
+  font-family: Consolas, monospace;
+}
+.add-city-row {
+  padding: 16px 0 24px;
+}
+.add-city-row button {
+  border-style: dashed;
+  border-radius: 100px;
+  min-height: 44px;
+}
+.slider-area {
+  padding: 24px;
+  background: #edf2ff;
+}
+.start-time-field {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.start-time-field > label {
+  font-size: 12px;
+}
+.start-time-field select {
+  font:
+    36px/1.1 Consolas,
+    monospace;
+  border: 0;
+  color: var(--color-accent);
+  background: transparent;
+  letter-spacing: -1.2px;
+  min-height: 56px;
+}
+.end-time-label {
+  font-size: 16px !important;
+}
+.end-time-label small {
+  font-size: 11px;
+}
+.slider-area input {
+  accent-color: var(--color-accent);
+  margin: 20px 0 12px;
+}
+.planner-footer {
+  padding: 12px 24px;
+  font-size: 11px;
+  background: #fff;
+}
+.suggestions {
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+}
+.suggestion-heading {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+.suggestion-label h2 {
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+}
+.suggestion-label p {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.meeting-actions {
+  flex-direction: row;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.meeting-actions .button {
+  width: auto;
+  border-radius: 100px;
+  padding-inline: 20px;
+}
+.side-tabs {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+  border-bottom: 1px solid var(--color-rule);
+}
+.side-tabs button {
+  background: transparent;
+  border: 0;
+  padding: 12px 0;
+  min-height: 44px;
+  color: var(--color-ink-2);
+  font-size: 12px;
+}
+.side-tabs button[aria-pressed='true'] {
+  color: var(--color-accent);
+  box-shadow: 0 2px 0 var(--color-accent);
+}
+.suggestion-times {
+  margin-top: 16px;
+  padding-top: 0;
+  border: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.suggestion-times > span {
+  flex-basis: 100%;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--color-ink-2);
+}
+.suggestion-times button {
+  flex-direction: row;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-color: var(--color-rule);
+  border-radius: 8px;
+  min-height: 48px;
+  font-family: Consolas, monospace;
+}
+.suggestion-times button small {
+  display: none;
+}
+.saved-times {
+  padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+}
+.saved-times > label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+}
+.saved-time {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid var(--color-rule);
+  background: white;
+  padding: 12px;
+  border-radius: 8px;
+}
+.saved-open {
+  background: transparent;
+  border: 0;
+  text-align: left;
+  color: var(--color-ink);
+}
+.saved-open strong,
+.saved-open span {
+  display: block;
+}
+.saved-open span,
+.saved-empty {
+  font-size: 12px;
+  color: var(--color-ink-2);
+}
+@media (max-width: 760px) {
+  .topbar {
+    padding: 20px;
+  }
+  .header-purpose {
+    font-size: 11px;
+  }
+  main {
+    padding: 16px 16px 40px;
+    gap: 24px;
+  }
+  .intro h1 {
+    font-size: 34px;
+  }
+  .intro p {
+    font-size: 13px;
+  }
+  .planner-controls {
+    padding: 12px;
+    gap: 12px;
+  }
+  .date-picker {
+    gap: 2px;
+  }
+  .date-picker input {
+    max-width: 140px;
+  }
+  .today-button {
+    margin-left: 0;
+  }
+  .control-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .timeline-heading {
+    padding: 20px 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .timeline-table {
+    padding: 0 16px;
+  }
+  .slider-area {
+    padding: 20px 16px;
+  }
+  .slider-area > div:first-child {
+    align-items: flex-start;
+  }
+  .start-time-field select {
+    font-size: 32px;
+  }
+  .suggestion-heading {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .meeting-actions .button {
+    flex: 1;
+    padding-inline: 12px;
+    font-size: 12px;
+  }
+  .planner-footer {
+    padding: 16px;
+  }
+  .suggestion-times {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .suggestion-times > span {
+    grid-column: 1/-1;
+  }
+  .suggestion-times button {
+    font-size: 12px;
+    padding: 10px;
+  }
+  .saved-times > label {
+    width: 100%;
+  }
+  .saved-time {
+    width: 100%;
+  }
+  .saved-open {
+    flex: 1;
+  }
+}
+
+/* The scale is a visual reference; the large select and keyboard-native slider select the time. */
+.ruler > span {
+  min-width: 0;
+  font:
+    12px Consolas,
+    monospace;
+  color: var(--color-ink-2);
+}
+.timeline-heading p,
+.legend,
+.city-name p,
+.local-time > span,
+.slider-ticks,
+.slider-area strong small,
+.planner-footer,
+.planner-footer button,
+.suggestion-times > span,
+.add-city-row button span {
+  font-size: 12px;
+}
+
+.portfolio-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 4px;
+  margin-left: auto;
+  color: var(--color-ink-2);
+  font-size: 12px;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+@media (max-width: 480px) {
+  .header-purpose {
+    display: none;
+  }
+}

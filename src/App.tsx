@@ -1,7 +1,6 @@
 import { parseSavedTimes, type SavedTime } from './saved';
 import { Bookmark, Trash2 } from 'lucide-react';
 import { rebaseMeeting } from './time';
-import ThemeToggle from './ThemeToggle';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   ArrowRight,
@@ -185,7 +184,14 @@ export default function App() {
           Overlap
         </a>
         <span className="header-purpose">Time zone planner</span>
-        <ThemeToggle />
+        <a
+          className="portfolio-link"
+          href={
+            import.meta.env.VITE_PORTFOLIO_URL || 'https://jpndmatos.github.io/Portfolio/#projects'
+          }
+        >
+          ← Portfolio
+        </a>
       </header>
       <main>
         <div className="intro">
@@ -290,17 +296,11 @@ export default function App() {
                     timeZone: 'UTC',
                   }).format(new Date(date + 'T12:00Z'))}
                 </div>
-                <div className="ruler">
+                <div className="ruler" aria-hidden="true">
                   {slots.map((t, i) => {
                     const p = localParts(t, cities[0].zone);
                     return (
-                      <button
-                        key={t}
-                        style={{ gridColumn: i + 1 }}
-                        aria-label={`Select ${timeLabel(t, cities[0].zone)} ${utcOffset(t, cities[0].zone)}`}
-                        onClick={() => setIndex(Math.min(i, lastIndex))}
-                        tabIndex={p.minute === 0 ? 0 : -1}
-                      >
+                      <span key={t} style={{ gridColumn: i + 1 }}>
                         {p.minute === 0 && p.hour % 3 === 0
                           ? hour12
                             ? new Intl.DateTimeFormat('en', {
@@ -310,7 +310,7 @@ export default function App() {
                               }).format(t)
                             : String(p.hour).padStart(2, '0')
                           : ''}
-                      </button>
+                      </span>
                     );
                   })}
                 </div>
