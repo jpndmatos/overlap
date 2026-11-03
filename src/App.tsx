@@ -173,17 +173,36 @@ export default function App() {
       </a>
       <header className="topbar">
         <a className="brand" href="./">
+          <svg className="brand-symbol" viewBox="0 0 44 32" aria-hidden="true">
+            <circle
+              cx="14"
+              cy="16"
+              r="12"
+              fill="currentColor"
+              fillOpacity=".12"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+            <circle
+              cx="30"
+              cy="16"
+              r="12"
+              fill="currentColor"
+              fillOpacity=".3"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+            <path
+              d="M14 9v7l-4 3m20-10v7l4 3"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+          </svg>
           Overlap
         </a>
         <span className="header-purpose">Time zone planner</span>
-        <a
-          className="portfolio-link"
-          href={
-            import.meta.env.VITE_PORTFOLIO_URL || 'https://jpndmatos.github.io/Portfolio/#projects'
-          }
-        >
-          ← Portfolio
-        </a>
       </header>
       <main>
         <div className="intro">
@@ -645,6 +664,7 @@ export default function App() {
                 <button
                   key={t}
                   className={t === selected ? 'active' : ''}
+                  aria-pressed={t === selected}
                   onClick={() => setIndex(slots.indexOf(t))}
                 >
                   {timeLabel(t, cities[0].zone, hour12)}

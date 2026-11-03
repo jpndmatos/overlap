@@ -384,20 +384,95 @@ main {
   font-size: 12px;
 }
 
-.portfolio-link {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 8px 4px;
-  margin-left: auto;
-  color: var(--color-ink-2);
-  font-size: 12px;
-  white-space: nowrap;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
 @media (max-width: 480px) {
   .header-purpose {
     display: none;
+  }
+}
+
+/* Clock atlas: paired clock mark, round daylight tracks and soft blue surfaces. */
+:root {
+  --font-body: 'Trebuchet MS', 'Segoe UI', sans-serif;
+  --color-paper: #edf3fa;
+  --color-paper-3: #eff4fc;
+}
+.topbar {
+  border-bottom: 1px solid #cbd8eb;
+  padding-block: 18px;
+}
+.brand {
+  gap: 12px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -1.2px;
+  color: #254ca1;
+}
+.brand-symbol {
+  width: 44px;
+  height: 32px;
+  flex-shrink: 0;
+}
+.header-purpose {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+.intro h1 {
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -1.5px;
+}
+.planner {
+  border: 1px solid #ccd9eb;
+  border-radius: 24px;
+  box-shadow: 0 12px 36px #244a7f0a;
+}
+.planner-controls {
+  border-bottom: 1px solid #e3ebf7;
+}
+.timeline-track {
+  border-radius: 100px;
+}
+.city-name p {
+  font:
+    12px/1.6 Consolas,
+    monospace;
+}
+.city-settings {
+  background: #edf3fc;
+  border-radius: 100px;
+  min-height: 44px;
+  padding-inline: 12px;
+}
+.slider-area {
+  background: #e6eefb;
+}
+.selection {
+  border-radius: 100px;
+}
+.suggestion-times button {
+  border: 1px solid #d2dff1;
+  border-radius: 100px;
+  background: #fff;
+}
+.suggestion-times button.active {
+  background: #224fd0;
+  color: #fff;
+  box-shadow: none;
+}
+.suggestion-label h2 {
+  font-weight: 700;
+}
+@media (max-width: 760px) {
+  .topbar {
+    padding-inline: 20px;
+  }
+  .brand {
+    font-size: 25px;
+  }
+  .brand-symbol {
+    width: 38px;
+  }
+  .planner {
+    border-radius: 20px;
   }
 }
