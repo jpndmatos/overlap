@@ -19,9 +19,7 @@ A time zone planner for arranging meetings. Add cities, compare working hours, a
 - Find shared availability with daylight-saving adjustments.
 - Switch the reference city and view each location's local time.
 - Copy meeting times or download an ICS file.
-- Six named meeting-time bookmarks, saved city preferences, and a dedicated visual design.
-
-The desktop dashboard keeps the timeline and meeting options together, with long city lists contained inside the timeline panel.
+- Six named meeting-time bookmarks, saved city preferences.
 
 ## Stack
 
@@ -44,11 +42,9 @@ npm run build
 npm run preview
 ```
 
-## Interface
+## Implementation notes
 
-A blue daylight planner with full-width city timelines, monospaced local clocks and meeting actions below the schedule. Local preferences, saved meetings and calendar exports work independently of any server.
-
-Each repository builds independently. System fonts keep the initial view free of font downloads.
+The selected meeting is stored as an instant, then formatted in each city’s IANA time zone. Changing the reference city preserves that instant. Daylight-saving days can contain 23 or 25 hours; saved meetings and calendar exports use the same time helpers.
 
 ## Verification
 

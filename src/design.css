@@ -26,9 +26,6 @@
   font-size: 24px;
   letter-spacing: -1px;
 }
-.brand img {
-  display: none;
-}
 .header-purpose {
   margin-left: auto;
   color: var(--color-ink-2);
