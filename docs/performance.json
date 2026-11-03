@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-03T19:04:28.119Z",
+  "date": "2026-11-03T21:25:36.425Z",
   "app": "overlap",
   "url": "http://127.0.0.1:5181/demo/overlap/",
   "lighthouseVersion": "12.8.2",
@@ -11,12 +11,12 @@
   },
   "metrics": {
     "first-contentful-paint": {
-      "value": 2345.984,
-      "display": "2.3 s"
+      "value": 2392.904,
+      "display": "2.4 s"
     },
     "largest-contentful-paint": {
-      "value": 2345.984,
-      "display": "2.3 s"
+      "value": 2392.904,
+      "display": "2.4 s"
     },
     "total-blocking-time": {
       "value": 0,
@@ -27,8 +27,8 @@
       "display": "0"
     },
     "total-byte-weight": {
-      "value": 272607,
-      "display": "Total size was 266 KiB"
+      "value": 278049,
+      "display": "Total size was 272 KiB"
     }
   }
 }

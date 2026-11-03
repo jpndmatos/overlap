@@ -1,0 +1,424 @@
+html,
+body,
+#root {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+#root {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+.topbar {
+  width: 100%;
+  max-width: none;
+  min-height: 56px;
+  padding: 10px 24px;
+  flex: none;
+}
+.brand {
+  font-size: 25px;
+}
+.brand-symbol {
+  height: 28px;
+}
+main {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 1600px;
+  padding: 14px 24px;
+  gap: 12px;
+}
+.intro {
+  flex: none;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin: 0;
+}
+.intro h1 {
+  font-size: 29px;
+  letter-spacing: -1px;
+}
+.intro p {
+  margin: 0;
+  font-size: 12px;
+}
+.planner {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+}
+.planner-controls {
+  flex: none;
+  padding: 8px 18px;
+}
+.timeline-heading {
+  flex: none;
+  padding: 10px 18px;
+  gap: 16px;
+}
+.timeline-heading > div:first-child {
+  margin-right: auto;
+}
+.timeline-heading h2 {
+  font-size: 13px;
+}
+.timeline-heading p {
+  font-size: 12px;
+}
+.legend {
+  font-size: 12px;
+}
+.add-city-control button {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--color-paper-3);
+  border: 1px solid var(--color-rule);
+  border-radius: 100px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.add-city-control span {
+  font-size: 12px;
+  color: var(--color-ink-2);
+}
+.timeline-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.timeline-table {
+  padding: 0 18px;
+}
+.ruler-row {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--color-paper-2);
+  height: 30px;
+}
+.ruler {
+  height: 30px;
+}
+.city-row {
+  padding: 12px 0;
+}
+.timeline-track {
+  height: 38px;
+}
+.local-time strong {
+  font-size: 25px;
+}
+.city-settings {
+  min-height: 36px;
+}
+.slider-area {
+  flex: none;
+  padding: 10px 18px;
+}
+.start-time-field select {
+  font-size: 25px;
+  min-height: 42px;
+}
+.slider-area input {
+  margin: 8px 0;
+}
+.slider-ticks {
+  font-size: 12px;
+}
+.planner-footer {
+  flex: none;
+  padding: 6px 18px;
+  min-height: 40px;
+}
+.suggestions {
+  flex: none;
+  padding: 0;
+}
+.suggestion-heading {
+  gap: 16px;
+}
+.suggestion-label h2 {
+  font-size: 18px;
+}
+.suggestion-label p {
+  margin-top: 3px;
+  font-size: 12px;
+}
+.meeting-actions .button {
+  min-height: 40px;
+  font-size: 12px;
+}
+.side-tabs {
+  margin-top: 6px;
+  min-height: 36px;
+}
+.side-tabs button {
+  min-height: 36px;
+  padding: 6px 0;
+}
+.suggestion-times {
+  margin-top: 8px;
+  gap: 8px;
+  align-items: center;
+}
+.suggestion-times > span {
+  flex-basis: auto;
+  margin: 0 8px 0 0;
+}
+.suggestion-times button {
+  min-height: 40px;
+  padding: 8px 14px;
+  font-size: 12px;
+}
+.saved-times {
+  flex-wrap: nowrap;
+  align-items: center;
+  padding-top: 8px;
+  max-height: 96px;
+  overflow: auto;
+}
+.saved-times > label {
+  flex: 0 0 180px;
+  gap: 4px;
+}
+.saved-times > .button {
+  flex: none;
+}
+.saved-time {
+  flex: 0 0 210px;
+  min-height: 64px;
+  padding: 8px;
+}
+.saved-open span {
+  font-size: 12px;
+}
+.workspace-tabs {
+  display: none;
+}
+@media (max-width: 760px) {
+  .topbar {
+    padding: 8px 16px;
+    min-height: 54px;
+  }
+  .brand {
+    font-size: 23px;
+  }
+  main {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .intro {
+    display: block;
+  }
+  .intro h1 {
+    font-size: 25px;
+  }
+  .intro p {
+    display: none;
+  }
+  .workspace-tabs {
+    display: flex;
+    flex: none;
+    gap: 20px;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .workspace-tabs button {
+    min-height: 44px;
+    padding: 8px 0;
+    border: 0;
+    background: transparent;
+    font-size: 13px;
+    color: var(--color-ink-2);
+  }
+  .workspace-tabs button[aria-pressed='true'] {
+    box-shadow: inset 0 -2px var(--color-accent);
+    color: var(--color-accent);
+  }
+  .planner-shell[data-panel='planner'] .suggestions,
+  .planner-shell[data-panel='options'] .planner {
+    display: none;
+  }
+  .planner-shell[data-panel='options'] .suggestions {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 8px 4px;
+  }
+  .planner {
+    border-radius: 16px;
+  }
+  .planner-controls {
+    padding: 8px 10px;
+    gap: 8px;
+  }
+  .control-right {
+    width: auto;
+    gap: 8px;
+  }
+  .date-picker input {
+    max-width: 128px;
+  }
+  .today-button {
+    padding-inline: 10px;
+  }
+  .duration select {
+    font-size: 12px;
+  }
+  .timeline-heading {
+    padding: 8px 12px;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+  .timeline-heading p,
+  .legend {
+    display: none;
+  }
+  .timeline-table {
+    padding: 0 12px;
+  }
+  .city-row {
+    padding: 10px 0;
+  }
+  .timeline-track {
+    height: 32px;
+  }
+  .local-time strong {
+    font-size: 23px;
+  }
+  .city-name p {
+    font-size: 12px;
+  }
+  .city-settings {
+    min-height: 34px;
+  }
+  .ruler-row {
+    height: 26px;
+  }
+  .ruler {
+    height: 26px;
+  }
+  .slider-area {
+    padding: 8px 12px;
+  }
+  .start-time-field {
+    gap: 8px;
+  }
+  .start-time-field select {
+    font-size: 21px;
+    min-height: 40px;
+  }
+  .start-time-field > span {
+    font-size: 12px;
+  }
+  .slider-area > div:first-child {
+    gap: 6px;
+  }
+  .slider-area strong {
+    font-size: 12px;
+  }
+  .slider-ticks {
+    font-size: 12px;
+  }
+  .planner-footer {
+    padding: 6px 12px;
+    gap: 8px;
+    font-size: 12px;
+  }
+  .planner-footer > span {
+    display: none;
+  }
+  .suggestion-heading {
+    align-items: stretch;
+  }
+  .suggestion-label h2 {
+    font-size: 22px;
+  }
+  .suggestion-label p {
+    font-size: 13px;
+  }
+  .meeting-actions .button {
+    min-height: 44px;
+  }
+  .side-tabs {
+    margin-top: 16px;
+  }
+  .side-tabs button {
+    min-height: 44px;
+  }
+  .suggestion-times {
+    margin-top: 16px;
+  }
+  .suggestion-times > span {
+    grid-column: 1/-1;
+  }
+  .suggestion-times button {
+    min-height: 48px;
+  }
+  .saved-times {
+    max-height: none;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 16px;
+    overflow: visible;
+  }
+  .saved-times > label,
+  .saved-time {
+    flex-basis: 100%;
+  }
+  .saved-open span {
+    font-size: 12px;
+  }
+}
+@media (max-height: 650px) {
+  .intro {
+    display: none;
+  }
+  .planner-controls {
+    padding-block: 6px;
+  }
+  .timeline-heading {
+    padding-block: 6px;
+  }
+  .city-row {
+    padding-block: 8px;
+  }
+  .planner-footer {
+    min-height: 34px;
+  }
+}
+
+@media (max-height: 650px) {
+  .intro {
+    display: block;
+  }
+  .intro h1 {
+    font-size: 22px;
+  }
+  .intro p {
+    display: none;
+  }
+}
+
+@media (max-height: 430px) {
+  main {
+    overflow: auto;
+  }
+  .planner {
+    flex: none;
+    min-height: 420px;
+  }
+  .planner-shell[data-panel='options'] .suggestions {
+    flex: none;
+    min-height: 300px;
+  }
+}

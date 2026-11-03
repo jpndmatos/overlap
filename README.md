@@ -48,4 +48,6 @@ The selected meeting is stored as an instant, then formatted in each cityâ€™s IA
 
 ## Verification
 
+The app fills the viewport, with longer lists scrolling inside their panels. On phones, Timeline and Meeting options keep each work area usable without squeezing the controls. Layout checks cover 320×568 through 1440×900.
+
 The production build and unit tests pass. Portfolio integration checks cover the main workflows at 390px and 1440px, WCAG A/AA checks including WCAG 2.2 target sizes, and failure handling. The mobile Lighthouse lab result is saved in `docs/performance.json`; it is a local observation, not a field-performance guarantee.

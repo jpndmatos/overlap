@@ -45,6 +45,7 @@ const icsDate = (t: number) =>
     .replace(/[-:]/g, '')
     .replace(/\.\d{3}/, '');
 export default function App() {
+  const [panel, setPanel] = useState<'planner' | 'options'>('planner');
   const [savedTimes, setSavedTimes] = useState<SavedTime[]>(() => {
     try {
       return parseSavedTimes(localStorage.getItem('overlap-saved-times'));
@@ -204,11 +205,19 @@ export default function App() {
         </a>
         <span className="header-purpose">Time zone planner</span>
       </header>
-      <main>
+      <main className="planner-shell" data-panel={panel}>
         <div className="intro">
           <h1>Meeting planner</h1>
           <p>Compare working hours across time zones.</p>
         </div>
+        <nav className="workspace-tabs" aria-label="Planner panel">
+          <button aria-pressed={panel === 'planner'} onClick={() => setPanel('planner')}>
+            Timeline
+          </button>
+          <button aria-pressed={panel === 'options'} onClick={() => setPanel('options')}>
+            Meeting options
+          </button>
+        </nav>
         <section id="planner" className="planner" aria-label="Meeting planner">
           <div className="planner-controls">
             <div className="date-picker">
@@ -292,8 +301,14 @@ export default function App() {
                 Outside hours
               </span>
             </div>
+            <div className="add-city-control">
+              <button onClick={() => setModal(true)} disabled={cities.length >= 8}>
+                <Plus size={15} />
+                Add a city<span>{cities.length}/8</span>
+              </button>
+            </div>
           </div>
-          <div className="timeline-scroll">
+          <div className="timeline-scroll" tabIndex={0} role="region" aria-label="City timelines">
             <div
               className="timeline-table"
               style={{ '--slots': slots.length } as React.CSSProperties}
@@ -473,12 +488,6 @@ export default function App() {
                   </div>
                 );
               })}
-              <div className="add-city-row">
-                <button onClick={() => setModal(true)} disabled={cities.length >= 8}>
-                  <Plus size={15} />
-                  Add a city<span>{cities.length}/8</span>
-                </button>
-              </div>
             </div>
           </div>
           <div className="slider-area">
@@ -541,7 +550,7 @@ export default function App() {
             </button>
           </div>
         </section>
-        <section className="suggestions">
+        <section className="suggestions" tabIndex={0} aria-label="Meeting options">
           <div className="suggestion-heading">
             <div className="suggestion-label">
               <div>
