@@ -63,7 +63,7 @@ export default function App() {
     }
   }, [savedTimes]);
   const [cities, setCities] = useState<City[]>(loadCities),
-    [date, setDate] = useState(() => localParts(Date.now(), 'Europe/Lisbon').date),
+    [date, setDate] = useState(() => localParts(Date.now(), cities[0].zone).date),
     [duration, setDuration] = useState(60),
     [index, setIndex] = useState(28),
     [weekends, setWeekends] = useState(false),
@@ -468,6 +468,15 @@ export default function App() {
                           <button
                             className="remove-city"
                             onClick={() => {
+                              if (i === 0) {
+                                const next = rebaseMeeting(selected, cities[1].zone, duration);
+                                setDate(next.date);
+                                setIndex(next.index);
+                                if (next.start !== selected)
+                                  setNotice(
+                                    'Meeting start adjusted to a valid interval in the new reference city.',
+                                  );
+                              }
                               setCities((old) => old.filter((c) => c.id !== city.id));
                               setEdit(null);
                             }}
@@ -541,9 +550,16 @@ export default function App() {
             </label>
             <button
               onClick={() => {
+                const next = rebaseMeeting(selected, defaults[0].zone, duration);
+                setDate(next.date);
+                setIndex(next.index);
                 setCities(defaults);
                 setEdit(null);
-                setNotice('Back to Lisbon, New York, and London.');
+                setNotice(
+                  next.start === selected
+                    ? 'Back to Lisbon, New York, and London.'
+                    : 'Cities reset. Meeting start adjusted to a valid interval in Lisbon.',
+                );
               }}
             >
               Reset cities

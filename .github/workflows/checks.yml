@@ -17,3 +17,15 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      - name: Real application browser workflows
+        env:
+          PLAYWRIGHT_CHANNEL: chrome
+        run: |
+          npm run preview > /tmp/overlap.log 2>&1 &
+          npm run test:browser
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: overlap-browser-review
+          path: test-results
+          retention-days: 7
