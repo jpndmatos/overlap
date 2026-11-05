@@ -52,7 +52,7 @@ try {
       axe.violations.map((v) => ({ id: v.id, targets: v.nodes.map((n) => n.target) })),
     ).toEqual([]);
     console.log(
-      `PASS Overlap ${width}Ã—${height}: timeline visibility, reference continuity, calendar and accessibility.`,
+      `PASS Overlap ${width}×${height}: timeline visibility, reference continuity, calendar and accessibility.`,
     );
     await context.close();
   }
