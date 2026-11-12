@@ -2,8 +2,6 @@
 
 Find a meeting time across cities, compare working hours, and save a few options. Copy local times or download a calendar invite with the meeting name and city details.
 
-[Try it](https://jpndmatos.github.io/overlap/)
-
 ![Overlap workspace](docs/workspace.png)
 
 ## Setup
