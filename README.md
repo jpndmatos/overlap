@@ -16,5 +16,3 @@ npm run dev
 ```
 
 Open http://localhost:5176. Cities and saved times stay in your browser. Time zones account for daylight-saving changes.
-
-React · TypeScript · Intl. [Development notes](docs/development.md).
