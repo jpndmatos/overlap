@@ -38,6 +38,18 @@ try {
       expect((await calendar()).match(/DTSTART:(.*)/)[1]).toBe(original);
       await expect(page.locator('.city-name').first()).toContainText('New York');
       await expect(page.locator('.city-name').first()).toContainText('Reference');
+      await page.getByRole('button', { name: /Saved times/ }).click();
+      await page.getByLabel('Meeting name', { exact: true }).fill('Design, review; João');
+      await page.getByRole('button', { name: 'Save current time', exact: true }).click();
+      await page.getByLabel('Meeting name', { exact: true }).fill('Another meeting');
+      await page.locator('.saved-open').first().click();
+      await expect(page.getByLabel('Meeting name', { exact: true })).toHaveValue(
+        'Design, review; João',
+      );
+      const exported = (await calendar()).replace(/\r\n /g, '');
+      expect(exported).toContain('SUMMARY:Design\\, review\\; João');
+      expect(exported).toContain('DESCRIPTION:');
+      expect(exported).toContain('New York');
     } else if (width <= 760) {
       await page.getByRole('button', { name: 'Meeting options', exact: true }).click();
       await expect(

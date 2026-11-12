@@ -1,3 +1,4 @@
+import { meetingCalendar } from './calendar';
 import { parseSavedTimes, type SavedTime } from './saved';
 import { Bookmark, Trash2 } from 'lucide-react';
 import { rebaseMeeting } from './time';
@@ -39,11 +40,6 @@ function fileDownload(text: string) {
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 30000);
 }
-const icsDate = (t: number) =>
-  new Date(t)
-    .toISOString()
-    .replace(/[-:]/g, '')
-    .replace(/\.\d{3}/, '');
 export default function App() {
   const [panel, setPanel] = useState<'planner' | 'options'>('planner');
   const [savedTimes, setSavedTimes] = useState<SavedTime[]>(() => {
@@ -143,7 +139,7 @@ export default function App() {
     setCities((old) => old.map((c) => (c.id === id ? { ...c, start, end } : c)));
   }
   const summary = () =>
-    `Meeting, ${duration} minutes\n` +
+    `${slotTitle.trim() || 'Meeting'}, ${duration} minutes\n` +
     cities
       .map(
         (c) =>
@@ -162,9 +158,7 @@ export default function App() {
     }
   }
   function calendar() {
-    fileDownload(
-      `BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Overlap//Meeting Planner//EN\r\nBEGIN:VEVENT\r\nUID:${crypto.randomUUID()}@overlap.local\r\nDTSTAMP:${icsDate(Date.now())}\r\nDTSTART:${icsDate(selected)}\r\nDTEND:${icsDate(end)}\r\nSUMMARY:Time together\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n`,
-    );
+    fileDownload(meetingCalendar(selected, duration, slotTitle, summary()));
     setNotice('Calendar file downloaded. Add attendees in your calendar.');
   }
   return (
@@ -652,6 +646,7 @@ export default function App() {
                       setDate(next.date);
                       setIndex(next.index);
                       setDuration(saved.duration);
+                      setSlotTitle(saved.title);
                       setNotice(
                         next.start === saved.start
                           ? 'Saved time selected.'

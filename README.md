@@ -1,12 +1,12 @@
 # Overlap
 
-Find a meeting time across cities, compare working hours and export a calendar invite. React, TypeScript and the Intl API.
+Find a meeting time across cities, compare working hours, and save a few options. Copy local times or download a calendar invite with the meeting name and city details.
 
-[Open app](https://jpndmatos.github.io/overlap/)
+[Try it](https://jpndmatos.github.io/overlap/)
 
-![Overlap timeline](docs/workspace.png)
+![Overlap workspace](docs/workspace.png)
 
-## Run
+## Setup
 
 Node.js 22.14+.
 
@@ -15,15 +15,6 @@ npm ci
 npm run dev
 ```
 
-Open http://localhost:5176. City preferences and saved meeting options stay in your browser.
+Open http://localhost:5176. Cities and saved times stay in your browser. Time zones account for daylight-saving changes.
 
-## Check
-
-```sh
-npm test
-npm run build
-```
-
-Use `npm run preview` to serve the build. With the app running, `npm run test:browser` checks calendar export, time-zone changes, responsive layouts and accessibility. Install Chromium with `npx playwright install chromium` first.
-
-Meeting times use IANA time zones, including daylight-saving changes. Changing the reference city preserves the selected instant.
+React · TypeScript · Intl. [Development notes](docs/development.md).
